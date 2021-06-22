@@ -4,7 +4,7 @@ LATEST_GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || echo "0.0
 NEW_GIT_TAG = $(shell echo $(LATEST_GIT_TAG) | awk '/^([0-9]+)\.([0-9]+)\.([0-9]+)$$/{split($$0,v,".")}END{printf("%d.%d.%d",v[1],v[2],v[3]+1)}')
 
 DOCKER ?= docker
-DOCKER_REGISTRY ?= registry.nutmeg.co.uk:8443
+DOCKER_REGISTRY ?= harbor.ci.nutmeg.co.uk
 DOCKER_IMAGE_NAME = nutmeg/nginx-file-browser
 DOCKER_IMAGE_TAG ?= $(subst /,-,$(NEW_GIT_TAG))
 DOCKER_ARTEFACT=$(DOCKER_REGISTRY)/$(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
